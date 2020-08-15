@@ -8,6 +8,4 @@ import java.io.IOException;
 public interface HelperService {
 
     File readFiles(MultipartFile file) throws IOException;
-
-    void writeFiles(String line);
 }

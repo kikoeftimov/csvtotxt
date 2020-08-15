@@ -34,8 +34,8 @@ public class InputController {
             File alldata = helperService.readFiles(file);
             model.addAttribute("datalink", alldata.getName());
             return "data";
-        } catch (Exception ex){
-            model.addAttribute("message", "error");
+        } catch (Exception e){
+            e.printStackTrace();
         }
            return "redirect:/";
     }
@@ -47,7 +47,7 @@ public class InputController {
             File fileToDownload = new File(filePathToBeServed);
             InputStream inputStream = new FileInputStream(fileToDownload);
             response.setContentType("application/force-download");
-            response.setHeader("Content-Disposition", "attachment; filename="+ "converted" + ".txt");
+            response.setHeader("Content-Disposition", "attachment; filename="+ fileToDownload.getName());
             IOUtils.copy(inputStream, response.getOutputStream());
             response.flushBuffer();
             inputStream.close();

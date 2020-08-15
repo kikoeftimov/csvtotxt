@@ -20,7 +20,7 @@ public class HelperServiceImpl implements HelperService {
             while ((line = bufferedReader.readLine()) != null){
                 String[] columns = line.split(DELIMITER);
 
-                writeFiles(String.join("#", columns));
+                //writeFiles(String.join("#", columns));
                 sb.append(String.join("#", columns)).append("\n");
             }
         } catch (IOException e) {
@@ -29,6 +29,7 @@ public class HelperServiceImpl implements HelperService {
 
         File newFile = new File("converted.txt");
         BufferedWriter writer = null;
+
         try {
             writer = new BufferedWriter(new FileWriter(newFile));
             writer.write(sb.toString());
@@ -36,38 +37,5 @@ public class HelperServiceImpl implements HelperService {
             if (writer != null) writer.close();
         }
         return newFile;
-    }
-
-    @Override
-    public void writeFiles(String line) {
-
-        BufferedWriter bw = null;
-        File file = new File("converted.txt");
-        if(file.length() > 0){
-            file.delete();
-        }
-        else{
-            try {
-                FileWriter fw = new FileWriter(file, true);
-                bw = new BufferedWriter(fw);
-                bw.write(line);
-                bw.newLine();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            finally {
-                try {
-                    if(bw!= null){
-                        bw.close();
-                        file.delete();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
     }
 }
