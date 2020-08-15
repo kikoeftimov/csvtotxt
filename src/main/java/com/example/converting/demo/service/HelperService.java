@@ -2,13 +2,9 @@ package com.example.converting.demo.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
-import java.io.File;
-
 public interface HelperService {
 
-    String readFiles();
+    String readFiles(MultipartFile file);
 
     void writeFiles(String line);
-
 }

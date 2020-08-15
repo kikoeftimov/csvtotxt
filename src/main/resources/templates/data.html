@@ -16,9 +16,14 @@
                     <label for="file">Select a CSV file</label>
                     <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
                 </div>
-
                 <button type="submit" class="btn btn-success">Transform</button>
             </form>
+
+            <div class="text-center" th:text="${alldata}"></div>
+            <br>
+            <br>
+            <a href="" th:text="${title}"></a>
+<!--            <a href="../../../../newjava.txt" download="newjava.txt">Click to download</a>-->
         </div>
     </div>
 </div>
