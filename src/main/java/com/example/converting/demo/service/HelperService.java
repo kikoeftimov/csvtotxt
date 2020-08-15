@@ -2,9 +2,12 @@ package com.example.converting.demo.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+
 public interface HelperService {
 
-    String readFiles(MultipartFile file);
+    File readFiles(MultipartFile file) throws IOException;
 
     void writeFiles(String line);
 }

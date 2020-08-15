@@ -10,7 +10,7 @@ import java.io.*;
 public class HelperServiceImpl implements HelperService {
 
     @Override
-    public String readFiles(MultipartFile file) {
+    public File readFiles(MultipartFile file) throws IOException {
 
         StringBuilder sb = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream()))){
@@ -26,8 +26,16 @@ public class HelperServiceImpl implements HelperService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(sb.toString());
-        return sb.toString();
+
+        File newFile = new File("converted.txt");
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(newFile));
+            writer.write(sb.toString());
+        } finally {
+            if (writer != null) writer.close();
+        }
+        return newFile;
     }
 
     @Override
