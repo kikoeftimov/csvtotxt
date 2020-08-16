@@ -23,6 +23,7 @@ public class DownloadServiceImpl implements DownloadService {
             IOUtils.copy(inputStream, response.getOutputStream());
             response.flushBuffer();
             inputStream.close();
+            fileToDownload.delete();
         } catch (Exception e){
             e.printStackTrace();
         }
