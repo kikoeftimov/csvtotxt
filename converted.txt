@@ -1,7 +1,0 @@
-id#semaNaSifrarnik#sequenceNumber#signId#signName#storniran#createdDate#creator#lastModifiedBy#lastModifiedDate#year
-1#1#1#1#asd#FALSE#2017-01-24 15:11:06.103000000#sifrarnik#sifrarnik#2017-01-24 15:11:06.103000000#2017
-2#2#2#2#asd#FALSE#2017-01-24 15:11:06.103000000#sifrarnik#sifrarnik#2017-01-24 15:11:06.103000000#2017
-3#3#3#3#ddd#FALSE#2017-01-24 15:11:06.117000000#sifrarnik#sifrarnik#2017-01-24 15:11:06.117000000#2017
-4#4#4#4#ssw#FALSE#2017-01-24 15:11:06.117000000#sifrarnik#sifrarnik#2017-01-24 15:11:06.117000000#2017
-5#5#5#5#ww#FALSE#2017-01-24 15:11:06.117000000#sifrarnik#sifrarnik#2017-01-24 15:11:06.117000000#2017
-6#6#6#6#sss#FALSE#2017-01-24 15:11:06.117000000#sifrarnik#sifrarnik#2017-01-24 15:11:06.117000000#2017

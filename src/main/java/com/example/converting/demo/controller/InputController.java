@@ -1,13 +1,11 @@
 package com.example.converting.demo.controller;
 
+import com.example.converting.demo.service.DownloadService;
 import com.example.converting.demo.service.HelperService;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
@@ -17,9 +15,11 @@ import java.io.*;
 public class InputController {
 
     private final HelperService helperService;
+    private final DownloadService downloadService;
 
-    public InputController(HelperService helperService) {
+    public InputController(HelperService helperService, DownloadService downloadService) {
         this.helperService = helperService;
+        this.downloadService = downloadService;
     }
 
     @GetMapping
@@ -40,19 +40,9 @@ public class InputController {
            return "redirect:/";
     }
 
-    @GetMapping("/download")
-    public void getLogFile(HttpSession session, HttpServletResponse response) throws Exception {
-        try {
-            String filePathToBeServed = "thisone.txt";
-            File fileToDownload = new File(filePathToBeServed);
-            InputStream inputStream = new FileInputStream(fileToDownload);
-            response.setContentType("application/force-download");
-            response.setHeader("Content-Disposition", "attachment; filename="+ fileToDownload.getName());
-            IOUtils.copy(inputStream, response.getOutputStream());
-            response.flushBuffer();
-            inputStream.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+    @PostMapping("/download")
+    public void getLogFile(HttpSession session, HttpServletResponse response, String datalink) throws Exception {
+        response.setHeader("datalink", datalink);
+        downloadService.getLogFile(session, response);
     }
 }

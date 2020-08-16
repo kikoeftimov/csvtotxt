@@ -16,12 +16,17 @@
                     <label for="file">Select a CSV file</label>
                     <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
                 </div>
-                <button type="submit" class="btn btn-success">Transform</button>
+                <br>
+                <button type="submit" class="btn btn-success">Transform to text file</button>
             </form>
             <br>
             <br>
-            <a href="/download" th:text="${datalink}"></a>
-<!--            <a href="../../../../newjava.txt" download="newjava.txt">Click to download</a>-->
+            <form method="post" action="/download" >
+                <div th:if="${datalink}">
+                    Click on the button to download
+                    <button type="submit" th:text="${datalink}" th:field="*{datalink}" th:value="${datalink}" name="datalink"></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

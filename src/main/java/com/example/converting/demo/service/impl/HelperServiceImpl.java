@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
-
 @Service
 public class HelperServiceImpl implements HelperService {
 
@@ -20,7 +19,6 @@ public class HelperServiceImpl implements HelperService {
             while ((line = bufferedReader.readLine()) != null){
                 String[] columns = line.split(DELIMITER);
 
-                //writeFiles(String.join("#", columns));
                 sb.append(String.join("#", columns)).append("\n");
             }
         } catch (IOException e) {
