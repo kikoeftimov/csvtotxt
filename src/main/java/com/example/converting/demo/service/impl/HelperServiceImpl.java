@@ -26,8 +26,10 @@ public class HelperServiceImpl implements HelperService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String filename = file.getOriginalFilename();
+        String fileNameWithOutExt = filename.replaceFirst("[.][^.]+$", "");
 
-        File newFile = new File("converted.txt");
+        File newFile = new File(fileNameWithOutExt + ".txt");
         BufferedWriter writer = null;
 
         try {

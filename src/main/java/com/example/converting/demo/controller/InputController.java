@@ -43,7 +43,7 @@ public class InputController {
     @GetMapping("/download")
     public void getLogFile(HttpSession session, HttpServletResponse response) throws Exception {
         try {
-            String filePathToBeServed = "converted.txt";
+            String filePathToBeServed = "thisone.txt";
             File fileToDownload = new File(filePathToBeServed);
             InputStream inputStream = new FileInputStream(fileToDownload);
             response.setContentType("application/force-download");
