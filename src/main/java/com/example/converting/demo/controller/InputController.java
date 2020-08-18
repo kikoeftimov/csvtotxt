@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
 import java.io.*;
 
 @Controller
@@ -40,9 +41,10 @@ public class InputController {
            return "redirect:/";
     }
 
-    @PostMapping("/download")
+    @PostMapping(value = "/download")
     public void getLogFile(HttpSession session, HttpServletResponse response, String datalink) throws Exception {
         response.setHeader("datalink", datalink);
+        response.setHeader("Content-Type", "text/plain; charset=UTF-8");
         downloadService.getLogFile(session, response);
     }
 }

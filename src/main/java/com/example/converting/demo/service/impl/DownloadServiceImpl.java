@@ -18,6 +18,8 @@ public class DownloadServiceImpl implements DownloadService {
             String filePathToBeServed = response.getHeader("datalink");
             File fileToDownload = new File(filePathToBeServed);
             InputStream inputStream = new FileInputStream(fileToDownload);
+            response.setContentType("UTF-8");
+            response.setCharacterEncoding("UTF-8");
             response.setContentType("application/force-download");
             response.setHeader("Content-Disposition", "attachment; filename="+ fileToDownload.getName());
             IOUtils.copy(inputStream, response.getOutputStream());
