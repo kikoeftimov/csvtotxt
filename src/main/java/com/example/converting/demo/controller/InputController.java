@@ -44,7 +44,6 @@ public class InputController {
     @PostMapping(value = "/download")
     public void getLogFile(HttpSession session, HttpServletResponse response, String datalink) throws Exception {
         response.setHeader("datalink", datalink);
-        response.setHeader("Content-Type", "text/plain; charset=UTF-8");
         downloadService.getLogFile(session, response);
     }
 }

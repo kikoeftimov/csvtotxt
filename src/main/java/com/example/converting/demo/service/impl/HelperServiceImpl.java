@@ -4,6 +4,7 @@ import com.example.converting.demo.service.HelperService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class HelperServiceImpl implements HelperService {
@@ -12,15 +13,15 @@ public class HelperServiceImpl implements HelperService {
     public File readFiles(MultipartFile file) throws IOException {
 
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream()))){
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))){
             String DELIMITER = ";";
             String line;
+
 
             while ((line = bufferedReader.readLine()) != null){
                 String[] columns = line.split(DELIMITER);
                 sb.append(String.join("#", columns)).append("\n");
             }
-            System.out.println(sb.toString());
 
 
         } catch (IOException e) {
