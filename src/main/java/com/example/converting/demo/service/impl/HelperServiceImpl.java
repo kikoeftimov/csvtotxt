@@ -13,7 +13,7 @@ public class HelperServiceImpl implements HelperService {
     public File readFiles(MultipartFile file) throws IOException {
 
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))){
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "windows-1251"))){
             String DELIMITER = ";";
             String line;
 
