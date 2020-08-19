@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class HelperServiceImpl implements HelperService {
@@ -17,10 +21,31 @@ public class HelperServiceImpl implements HelperService {
             String DELIMITER = ";";
             String line;
 
-
             while ((line = bufferedReader.readLine()) != null){
-                String[] columns = line.split(DELIMITER);
-                sb.append(String.join("#", columns)).append("\n");
+
+                if(line.contains("\"")){
+
+                    List<String> result = new ArrayList<String>();
+                    int start = 0;
+                    boolean inQuotes = false;
+                    for (int current = 0; current < line.length(); current++) {
+                        if (line.charAt(current) == '\"')
+                            inQuotes = !inQuotes; // toggle state
+                        boolean atLastChar = (current == line.length() - 1);
+                        if(atLastChar)
+                                result.add(line.substring(start));
+                        else if (line.charAt(current) == ';' && !inQuotes) {
+                                result.add(line.substring(start, current));
+                                start = current + 1;
+                        }
+                    }
+                    sb.append(String.join("#", result)).append("\n");
+                }
+                else{
+                    String[] columns = line.split(DELIMITER);
+                    sb.append(String.join("#", columns)).append("\n");
+                }
+
             }
 
 
@@ -31,7 +56,7 @@ public class HelperServiceImpl implements HelperService {
         String filename = file.getOriginalFilename();
         String fileNameWithOutExt = filename.replaceFirst("[.][^.]+$", "");
 
-        File newFile = new File(fileNameWithOutExt + ".txt");
+        File newFile = new File(!fileNameWithOutExt.equals("") ? (fileNameWithOutExt + ".txt") : null);
         BufferedWriter writer = null;
 
         try {
